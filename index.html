@@ -9,793 +9,515 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
-    /* ── Design Tokens ──────────────────────────────────── */
     :root, [data-theme="light"] {
-      --color-bg: #f5f7f6;
-      --color-surface: #ffffff;
-      --color-surface-2: #f9fafb;
-      --color-surface-offset: #f0f2f1;
-      --color-divider: #e4e7e5;
-      --color-border: #d6dad8;
-      --color-text: #1a2320;
-      --color-text-muted: #5a6b65;
-      --color-text-faint: #9aada7;
-      --color-text-inverse: #f5f7f6;
-      --color-primary: #0a7c6e;
-      --color-primary-hover: #075f55;
-      --color-primary-active: #04433c;
-      --color-primary-light: #d8eeeb;
-      --color-resp: #2563eb;
-      --color-resp-light: #dbeafe;
-      --color-cvd: #dc2626;
-      --color-cvd-light: #fee2e2;
-      --color-warning: #d97706;
-      --color-warning-light: #fef3c7;
-      --color-success: #16a34a;
+      --color-bg: #f5f7f6; --color-surface: #ffffff; --color-surface-2: #f9fafb;
+      --color-surface-offset: #f0f2f1; --color-divider: #e4e7e5; --color-border: #d6dad8;
+      --color-text: #1a2320; --color-text-muted: #5a6b65; --color-text-faint: #9aada7;
+      --color-primary: #0a7c6e; --color-primary-hover: #075f55; --color-primary-light: #d8eeeb;
+      --color-resp: #2563eb; --color-resp-light: #dbeafe;
+      --color-cvd: #dc2626; --color-cvd-light: #fee2e2;
       --color-error: #dc2626;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
-      --shadow-lg: 0 12px 32px rgba(0,0,0,0.10);
-      --radius-sm: 0.375rem;
-      --radius-md: 0.5rem;
-      --radius-lg: 0.75rem;
-      --radius-xl: 1rem;
-      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
-      --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
-      --space-12: 3rem; --space-16: 4rem;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06); --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem; --radius-xl: 1rem;
+      --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem;
+      --space-6: 1.5rem; --space-8: 2rem; --space-16: 4rem;
       --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
       --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
       --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
       --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
-      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
       --font-body: 'Inter', system-ui, sans-serif;
       --font-display: 'Instrument Serif', Georgia, serif;
       --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
     }
-
     [data-theme="dark"] {
-      --color-bg: #0f1512;
-      --color-surface: #161d1a;
-      --color-surface-2: #1c2520;
-      --color-surface-offset: #1a2320;
-      --color-divider: #263028;
-      --color-border: #2e3a35;
-      --color-text: #d4ddd9;
-      --color-text-muted: #748f87;
-      --color-text-faint: #485f59;
-      --color-text-inverse: #0f1512;
-      --color-primary: #3db8a5;
-      --color-primary-hover: #5ecabb;
-      --color-primary-active: #7cdacd;
-      --color-primary-light: #1a3530;
-      --color-resp: #60a5fa;
-      --color-resp-light: #1e3a5f;
-      --color-cvd: #f87171;
-      --color-cvd-light: #5c1a1a;
-      --color-warning: #fbbf24;
-      --color-warning-light: #4a3200;
-      --color-success: #4ade80;
+      --color-bg: #0f1512; --color-surface: #161d1a; --color-surface-2: #1c2520;
+      --color-surface-offset: #1a2320; --color-divider: #263028; --color-border: #2e3a35;
+      --color-text: #d4ddd9; --color-text-muted: #748f87; --color-text-faint: #485f59;
+      --color-primary: #3db8a5; --color-primary-hover: #5ecabb; --color-primary-light: #1a3530;
+      --color-resp: #60a5fa; --color-resp-light: #1e3a5f;
+      --color-cvd: #f87171; --color-cvd-light: #5c1a1a;
       --color-error: #f87171;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
-      --shadow-lg: 0 12px 32px rgba(0,0,0,0.5);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3); --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
     }
-
-    /* ── Base Reset ────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-    body {
-      font-family: var(--font-body);
-      font-size: var(--text-base);
-      color: var(--color-text);
-      background: var(--color-bg);
-      min-height: 100dvh;
-      line-height: 1.6;
-    }
-    img, svg { display: block; }
+    body { font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text); background: var(--color-bg); min-height: 100dvh; line-height: 1.6; }
     button, input, select { font: inherit; color: inherit; cursor: pointer; }
     button { background: none; border: none; }
-    a, button, input, select { transition: color var(--transition), background var(--transition), border-color var(--transition), box-shadow var(--transition), opacity var(--transition); }
+    a, button, input, select { transition: color var(--transition), background var(--transition), border-color var(--transition), box-shadow var(--transition); }
     :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; } }
 
-    /* ── Layout ────────────────────────────────────────── */
-    .app-header {
-      background: var(--color-surface);
-      border-bottom: 1px solid var(--color-divider);
-      padding: var(--space-4) var(--space-6);
-      position: sticky; top: 0; z-index: 50;
-      box-shadow: var(--shadow-sm);
-    }
-    .header-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
-    }
-    .logo-mark {
-      display: flex; align-items: center; gap: var(--space-3);
-    }
+    /* Header */
+    .app-header { background: var(--color-surface); border-bottom: 1px solid var(--color-divider); padding: var(--space-4) var(--space-6); position: sticky; top: 0; z-index: 50; box-shadow: var(--shadow-sm); }
+    .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
     .logo-text { font-family: var(--font-display); font-size: var(--text-lg); color: var(--color-text); line-height: 1.1; }
     .logo-text span { color: var(--color-primary); }
-    .logo-sub { font-size: var(--text-xs); color: var(--color-text-muted); font-family: var(--font-body); }
-
-    .theme-toggle {
-      width: 40px; height: 40px;
-      border-radius: var(--radius-lg);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--color-text-muted);
-      border: 1px solid var(--color-border);
-      background: var(--color-surface);
-    }
+    .logo-sub { font-size: var(--text-xs); color: var(--color-text-muted); }
+    .theme-toggle { width: 40px; height: 40px; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); border: 1px solid var(--color-border); background: var(--color-surface); }
     .theme-toggle:hover { background: var(--color-surface-offset); color: var(--color-text); }
 
-    .main-content {
-      max-width: 1200px; margin: 0 auto;
-      padding: var(--space-8) var(--space-6) var(--space-16);
-    }
+    /* Main */
+    .main-content { max-width: 1200px; margin: 0 auto; padding: var(--space-8) var(--space-6) var(--space-16); }
 
-    /* ── Model Tabs ────────────────────────────────────── */
-    .model-tabs {
-      display: flex; gap: var(--space-2);
-      background: var(--color-surface-offset);
-      padding: var(--space-1);
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--color-border);
-      margin-bottom: var(--space-8);
-      overflow-x: auto;
-    }
-    .tab-btn {
-      flex: 1; padding: var(--space-3) var(--space-4);
-      border-radius: calc(var(--radius-xl) - 2px);
-      font-size: var(--text-sm); font-weight: 500;
-      color: var(--color-text-muted); white-space: nowrap;
-      border: 1px solid transparent;
-      background: transparent; text-align: center;
-    }
+    /* Tabs */
+    .model-tabs { display: flex; gap: var(--space-2); background: var(--color-surface-offset); padding: 4px; border-radius: var(--radius-xl); border: 1px solid var(--color-border); margin-bottom: var(--space-8); overflow-x: auto; }
+    .tab-btn { flex: 1; padding: var(--space-3) var(--space-4); border-radius: calc(var(--radius-xl) - 2px); font-size: var(--text-sm); font-weight: 500; color: var(--color-text-muted); white-space: nowrap; border: 1px solid transparent; background: transparent; text-align: center; }
     .tab-btn:hover { color: var(--color-text); background: var(--color-surface); }
-    .tab-btn.active {
-      background: var(--color-surface);
-      color: var(--color-text);
-      box-shadow: var(--shadow-sm);
-      border-color: var(--color-border);
-    }
+    .tab-btn.active { background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow-sm); border-color: var(--color-border); }
     .tab-btn.active[data-model="all-cause"] { color: var(--color-primary); border-color: var(--color-primary-light); }
     .tab-btn.active[data-model="resp"] { color: var(--color-resp); border-color: var(--color-resp-light); }
     .tab-btn.active[data-model="cvd"] { color: var(--color-cvd); border-color: var(--color-cvd-light); }
 
-    /* ── Two-Column Grid ───────────────────────────────── */
-    .calc-grid {
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: var(--space-6);
-      align-items: start;
-    }
-    @media (max-width: 900px) {
-      .calc-grid { grid-template-columns: 1fr; }
-    }
+    /* Grid */
+    .calc-grid { display: grid; grid-template-columns: 1fr 380px; gap: var(--space-6); align-items: start; }
+    @media (max-width: 900px) { .calc-grid { grid-template-columns: 1fr; } }
 
-    /* ── Cards ─────────────────────────────────────────── */
-    .card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-    }
-    .card-header {
-      padding: var(--space-5) var(--space-6);
-      border-bottom: 1px solid var(--color-divider);
-      display: flex; align-items: center; gap: var(--space-3);
-    }
-    .card-header-icon {
-      width: 32px; height: 32px; border-radius: var(--radius-md);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; flex-shrink: 0;
-    }
+    /* Cards */
+    .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); box-shadow: var(--shadow-sm); overflow: hidden; }
+    .card-header { padding: var(--space-5) var(--space-6); border-bottom: 1px solid var(--color-divider); display: flex; align-items: center; gap: var(--space-3); }
     .card-title { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); }
     .card-subtitle { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 1px; }
     .card-body { padding: var(--space-6); }
 
-    /* ── Form Elements ─────────────────────────────────── */
-    .form-section-label {
-      font-size: var(--text-xs); font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.07em;
-      color: var(--color-text-muted);
-      margin-bottom: var(--space-3);
-      padding-bottom: var(--space-2);
-      border-bottom: 1px solid var(--color-divider);
-    }
+    /* Form */
+    .section-label { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-text-muted); margin-bottom: var(--space-3); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-divider); }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-bottom: var(--space-5); }
     .form-group { display: flex; flex-direction: column; gap: var(--space-2); }
-    .form-label { font-size: var(--text-sm); font-weight: 500; color: var(--color-text); }
-    .form-control {
-      padding: var(--space-3) var(--space-4);
-      border: 1.5px solid var(--color-border);
-      border-radius: var(--radius-md);
-      background: var(--color-surface);
-      font-size: var(--text-sm);
-      color: var(--color-text);
-      width: 100%;
-    }
+    .form-label { font-size: var(--text-sm); font-weight: 500; }
+    .form-control { padding: var(--space-3) var(--space-4); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); font-size: var(--text-sm); width: 100%; }
     .form-control:hover { border-color: var(--color-text-muted); }
     .form-control:focus { border-color: var(--color-primary); outline: none; box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-primary) 15%, transparent); }
+    .form-control.error { border-color: var(--color-error) !important; box-shadow: 0 0 0 3px rgba(220,38,38,0.15) !important; }
 
-    /* ── Comorbidity Toggles ───────────────────────────── */
+    /* Age warning */
+    .age-warning { display: none; font-size: var(--text-xs); color: var(--color-error); margin-top: 4px; font-weight: 500; }
+    .age-warning.visible { display: block; }
+
+    /* Toggles */
     .comorbidity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); margin-bottom: var(--space-5); }
-    .toggle-item {
-      display: flex; align-items: center; gap: var(--space-3);
-      padding: var(--space-2) var(--space-3);
-      border: 1.5px solid var(--color-border);
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      user-select: none;
-      background: var(--color-surface);
-    }
+    .toggle-item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); cursor: pointer; user-select: none; background: var(--color-surface); }
     .toggle-item:hover { border-color: var(--color-primary); background: var(--color-primary-light); }
-    .toggle-item.checked {
-      border-color: var(--color-primary);
-      background: var(--color-primary-light);
-    }
-    .toggle-item input[type="checkbox"] { display: none; }
-    .toggle-box {
-      width: 18px; height: 18px; flex-shrink: 0;
-      border: 2px solid var(--color-border);
-      border-radius: 4px;
-      background: var(--color-surface);
-      display: flex; align-items: center; justify-content: center;
-      transition: all var(--transition);
-    }
-    .toggle-item.checked .toggle-box {
-      background: var(--color-primary); border-color: var(--color-primary);
-    }
-    .toggle-box::after {
-      content: ''; display: none;
-      width: 5px; height: 9px;
-      border: 2px solid white; border-top: none; border-left: none;
-      transform: rotate(40deg) translateY(-1px);
-    }
-    .toggle-item.checked .toggle-box::after { display: block; }
-    .toggle-label { font-size: var(--text-xs); font-weight: 500; color: var(--color-text); line-height: 1.3; }
-    .toggle-item.checked .toggle-label { color: var(--color-primary-hover); }
-    [data-theme="dark"] .toggle-item.checked .toggle-label { color: var(--color-primary-active); }
+    .toggle-item.checked { border-color: var(--color-primary); background: var(--color-primary-light); }
+    .toggle-item.disabled { opacity: 0.35; pointer-events: none; }
+    .toggle-switch { width: 18px; height: 18px; border-radius: 4px; border: 2px solid var(--color-border); background: var(--color-surface); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all var(--transition); }
+    .toggle-item.checked .toggle-switch { background: var(--color-primary); border-color: var(--color-primary); }
+    .toggle-switch svg { display: none; }
+    .toggle-item.checked .toggle-switch svg { display: block; }
+    .toggle-label { font-size: var(--text-xs); font-weight: 500; color: var(--color-text); }
 
-    /* ── Inactive comorbidities for cause-specific models ── */
-    .toggle-item.inactive {
-      opacity: 0.35; pointer-events: none;
-    }
+    /* Calc button */
+    .calc-btn { width: 100%; padding: var(--space-4); background: var(--color-primary); color: white; border-radius: var(--radius-lg); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.02em; margin-top: var(--space-5); box-shadow: 0 2px 8px color-mix(in oklch, var(--color-primary) 30%, transparent); }
+    .calc-btn:hover { background: var(--color-primary-hover); }
 
-    /* ── Result Panel ──────────────────────────────────── */
-    .result-stack { display: flex; flex-direction: column; gap: var(--space-4); position: sticky; top: calc(64px + var(--space-4)); }
+    /* Result panel */
+    .result-main { text-align: center; padding: var(--space-6); background: var(--color-surface-offset); border-radius: var(--radius-lg); margin-bottom: var(--space-4); }
+    .result-value { font-size: 4rem; font-weight: 700; line-height: 1; color: var(--color-primary); font-family: var(--font-display); }
+    .result-value.na { color: var(--color-error); font-size: 2.5rem; }
+    .result-label { font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-2); }
+    .result-surv { font-size: var(--text-xs); color: var(--color-text-faint); margin-top: 4px; }
+    .age-error-msg { font-size: var(--text-sm); color: var(--color-error); font-weight: 500; margin-top: var(--space-3); padding: var(--space-3); background: rgba(220,38,38,0.08); border-radius: var(--radius-md); border: 1px solid rgba(220,38,38,0.2); display: none; }
+    .age-error-msg.visible { display: block; }
 
-    .result-primary {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-sm);
-      padding: var(--space-6);
-      text-align: center;
-    }
-    .result-label {
-      font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.06em;
-      text-transform: uppercase; color: var(--color-text-muted); margin-bottom: var(--space-3);
-    }
-    .result-value {
-      font-size: clamp(3rem, 8vw, 4.5rem); font-weight: 700; line-height: 1;
-      font-family: var(--font-display);
-      transition: color var(--transition);
-    }
-    .result-value.risk-low { color: var(--color-success); }
-    .result-value.risk-mod { color: var(--color-warning); }
-    .result-value.risk-high { color: var(--color-cvd); }
-    .result-meta { font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-3); }
-    .result-model-badge {
-      display: inline-block; margin-top: var(--space-3);
-      padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
-      font-size: var(--text-xs); font-weight: 600;
-    }
-    .badge-allcause { background: var(--color-primary-light); color: var(--color-primary-hover); }
-    [data-theme="dark"] .badge-allcause { color: var(--color-primary-active); }
-    .badge-resp { background: var(--color-resp-light); color: var(--color-resp); }
-    .badge-cvd { background: var(--color-cvd-light); color: var(--color-cvd); }
+    /* Mini risk panels */
+    .mini-risks { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--space-2); margin-bottom: var(--space-4); }
+    .mini-risk { text-align: center; padding: var(--space-3); border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-surface); }
+    .mini-risk-val { font-size: 1.4rem; font-weight: 700; line-height: 1; }
+    .mini-risk-label { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 2px; }
+    .mini-risk.all { border-color: var(--color-primary-light); }
+    .mini-risk.all .mini-risk-val { color: var(--color-primary); }
+    .mini-risk.resp { border-color: var(--color-resp-light); }
+    .mini-risk.resp .mini-risk-val { color: var(--color-resp); }
+    .mini-risk.cvd { border-color: var(--color-cvd-light); }
+    .mini-risk.cvd .mini-risk-val { color: var(--color-cvd); }
 
-    /* ── Three-model mini results ─────────────────────── */
-    .mini-results {
-      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--space-2);
-    }
-    .mini-result-box {
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg);
-      padding: var(--space-3);
-      text-align: center;
-      background: var(--color-surface);
-    }
-    .mini-result-label { font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-1); line-height: 1.2; }
-    .mini-result-value { font-size: var(--text-lg); font-weight: 700; font-family: var(--font-display); }
-    .mini-result-box.allcause .mini-result-value { color: var(--color-primary); }
-    .mini-result-box.resp .mini-result-value { color: var(--color-resp); }
-    .mini-result-box.cvd .mini-result-value { color: var(--color-cvd); }
+    /* Chart */
+    .chart-wrap { position: relative; height: 220px; }
 
-    /* ── Risk Gauge ────────────────────────────────────── */
-    .gauge-wrapper { padding: var(--space-2) 0 0; }
-    .gauge-track {
-      height: 8px; border-radius: 999px;
-      background: linear-gradient(to right, #16a34a 0%, #16a34a 25%, #d97706 25%, #d97706 60%, #dc2626 60%, #dc2626 100%);
-      position: relative; margin-bottom: var(--space-2);
-    }
-    .gauge-needle {
-      position: absolute; top: 50%; transform: translate(-50%, -50%);
-      width: 14px; height: 14px; border-radius: 50%;
-      background: var(--color-text); border: 2px solid var(--color-surface);
-      box-shadow: 0 0 0 2px var(--color-text);
-      transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .gauge-labels { display: flex; justify-content: space-between; font-size: var(--text-xs); color: var(--color-text-faint); }
-
-    /* ── Chart ─────────────────────────────────────────── */
-    .chart-wrapper { position: relative; height: 220px; }
-    canvas { border-radius: var(--radius-md); }
-
-    /* ── Formula box ───────────────────────────────────── */
-    .formula-box {
-      background: var(--color-surface-offset);
-      border: 1px solid var(--color-divider);
-      border-radius: var(--radius-md);
-      padding: var(--space-4);
-      font-size: var(--text-xs);
-      color: var(--color-text-muted);
-      line-height: 1.7;
-    }
-    .formula-box code {
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      color: var(--color-primary);
-      font-size: 0.85em;
-    }
-
-    /* ── Predictor count badge ─────────────────────────── */
-    .predictor-badge {
-      display: inline-flex; align-items: center; gap: var(--space-1);
-      background: var(--color-surface-offset); border: 1px solid var(--color-divider);
-      padding: 2px var(--space-2); border-radius: var(--radius-full);
-      font-size: var(--text-xs); color: var(--color-text-muted);
-      margin-left: auto;
-    }
-
-    /* ── Calculate Button ──────────────────────────────── */
-    .btn-calculate {
-      width: 100%; padding: var(--space-4);
-      background: var(--color-primary); color: var(--color-text-inverse);
-      border-radius: var(--radius-lg); font-weight: 600;
-      font-size: var(--text-base);
-      border: none; cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      margin-top: var(--space-4);
-    }
-    .btn-calculate:hover { background: var(--color-primary-hover); box-shadow: var(--shadow-md); }
-    .btn-calculate:active { background: var(--color-primary-active); transform: translateY(1px); }
-
-    /* ── Footnote ──────────────────────────────────────── */
-    .footnote {
-      font-size: var(--text-xs); color: var(--color-text-faint);
-      text-align: center; margin-top: var(--space-8);
-      padding: var(--space-4);
-      border-top: 1px solid var(--color-divider);
-    }
-
-    /* ── Utilities ─────────────────────────────────────── */
-    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
-    .flex-between { display: flex; align-items: center; justify-content: space-between; }
-    .mb-4 { margin-bottom: var(--space-4); }
-    .mb-5 { margin-bottom: var(--space-5); }
-    .mb-6 { margin-bottom: var(--space-6); }
+    /* Footnote */
+    .footnote { font-size: var(--text-xs); color: var(--color-text-faint); padding: var(--space-4) var(--space-6); border-top: 1px solid var(--color-divider); }
   </style>
 </head>
 <body>
 
-<!-- ── Header ─────────────────────────────────────────── -->
 <header class="app-header">
   <div class="header-inner">
-    <div class="logo-mark">
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-label="VALOR-m logo">
-        <rect width="36" height="36" rx="8" fill="var(--color-primary)" opacity="0.12"/>
-        <path d="M8 26L14 10L18 20L22 14L28 26" stroke="var(--color-primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="18" cy="10" r="2.5" fill="var(--color-primary)"/>
-      </svg>
-      <div>
-        <div class="logo-text"><span>VALOR</span>-m</div>
-        <div class="logo-sub">VLOSLP Mortality Risk Calculator</div>
-      </div>
+    <div>
+      <div class="logo-text"><span>VALOR</span>-m</div>
+      <div class="logo-sub">VLOSLP All-Cause &amp; Cause-Specific Mortality Calculator</div>
     </div>
-    <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-      </svg>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
   </div>
 </header>
 
-<!-- ── Main ───────────────────────────────────────────── -->
 <main class="main-content">
 
   <!-- Model Tabs -->
-  <div class="model-tabs" role="tablist" aria-label="Select prediction model">
-    <button class="tab-btn active" data-model="all-cause" role="tab" aria-selected="true" onclick="switchModel('all-cause')">
+  <div class="model-tabs" role="tablist">
+    <button class="tab-btn active" data-model="all-cause" onclick="switchModel('all-cause')" role="tab">
       All-Cause Mortality <span style="font-size:var(--text-xs);opacity:0.7;margin-left:4px;">12 predictors</span>
     </button>
-    <button class="tab-btn" data-model="resp" role="tab" aria-selected="false" onclick="switchModel('resp')">
+    <button class="tab-btn" data-model="resp" onclick="switchModel('resp')" role="tab">
       Respiratory Mortality <span style="font-size:var(--text-xs);opacity:0.7;margin-left:4px;">6 predictors</span>
     </button>
-    <button class="tab-btn" data-model="cvd" role="tab" aria-selected="false" onclick="switchModel('cvd')">
+    <button class="tab-btn" data-model="cvd" onclick="switchModel('cvd')" role="tab">
       Cardiovascular Mortality <span style="font-size:var(--text-xs);opacity:0.7;margin-left:4px;">4 predictors</span>
     </button>
   </div>
 
   <div class="calc-grid">
-    <!-- ── LEFT: Inputs ───────────────────────────────── -->
-    <div>
-      <div class="card">
-        <div class="card-header">
-          <div class="card-header-icon" style="background:var(--color-primary-light);">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+
+    <!-- LEFT: Inputs -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title" id="model-title">VALOR-m — All-Cause Mortality Model</div>
+          <div class="card-subtitle" id="model-subtitle">LASSO Cox regression · 12 retained predictors · C-statistic 0.74</div>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <!-- Demographics -->
+        <div class="section-label">Demographics</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="onset_age">Age at Onset</label>
+            <input type="number" id="onset_age" class="form-control" value="75"
+                   min="60" max="120" oninput="validateAge(); calculateAll();">
+            <div class="age-warning" id="age-warning">⚠ VLOSLP is defined as onset age ≥ 60</div>
           </div>
-          <div>
-            <div class="card-title">Patient Parameters</div>
-            <div class="card-subtitle" id="model-subtitle">VALOR-m All-Cause Model — 3-year risk</div>
+          <div class="form-group">
+            <label class="form-label" for="sex">Biological Sex</label>
+            <select id="sex" class="form-select form-control" onchange="calculateAll()">
+              <option value="0">Female</option>
+              <option value="1">Male</option>
+            </select>
           </div>
         </div>
-        <div class="card-body">
 
-          <!-- Demographics -->
-          <div class="form-section-label">Demographics</div>
-          <div class="form-row mb-5">
-            <div class="form-group">
-              <label class="form-label" for="onset_age">Age at Onset (years)</label>
-              <input type="number" id="onset_age" class="form-control" value="75" min="60" max="110" oninput="calculateAll()">
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="sex">Biological Sex</label>
-              <select id="sex" class="form-control" onchange="calculateAll()">
-                <option value="0">Female (reference)</option>
-                <option value="1">Male</option>
-              </select>
-            </div>
-          </div>
+        <!-- Comorbidities -->
+        <div class="section-label">Comorbidities</div>
+        <div class="comorbidity-grid" id="comorbidity-grid">
+          <!-- Populated by JS -->
+        </div>
 
-          <!-- Comorbidities -->
-          <div class="flex-between mb-4" style="align-items:flex-end;">
-            <div class="form-section-label" style="margin:0;border:none;padding:0;">Comorbidities</div>
-            <span class="predictor-badge" id="active-predictor-count">0 active</span>
-          </div>
-
-          <div class="comorbidity-grid" id="comorbidity-grid">
-            <!-- Populated by JS -->
-          </div>
-
-          <button class="btn-calculate" onclick="calculateAll()">
-            Calculate 3-Year Risk
-          </button>
-
-        </div><!-- /card-body -->
-      </div><!-- /card -->
-
-      <!-- Formula reference -->
-      <div class="formula-box" style="margin-top:var(--space-4);" id="formula-box">
-        <strong style="color:var(--color-text);">VALOR-m Formula (All-Cause)</strong><br>
-        Risk score = <code>β_age × (age − 60) + Σ βᵢ × xᵢ</code><br>
-        3-yr mortality = <code>(1 − 0.989<sup>exp(risk score)</sup>) × 100%</code><br>
-        <em style="color:var(--color-text-faint);">Baseline survival S₀ at 3 years = 0.989 | LASSO Cox regression | Spatiotemporal IECV validated</em>
+        <button class="calc-btn" onclick="calculateAll()">Calculate Risk</button>
       </div>
     </div>
 
-    <!-- ── RIGHT: Results ──────────────────────────────── -->
-    <div class="result-stack">
+    <!-- RIGHT: Results -->
+    <div style="display:flex; flex-direction:column; gap:var(--space-4);">
 
       <!-- Primary result -->
-      <div class="result-primary">
-        <div class="result-label" id="result-label">3-Year All-Cause Mortality Risk</div>
-        <div class="result-value risk-low" id="result-value">—</div>
-        <div class="result-meta" id="result-surv">Survival probability: —</div>
-        <span class="result-model-badge badge-allcause" id="result-badge">VALOR-m All-Cause</span>
-      </div>
-
-      <!-- Risk gauge -->
-      <div class="card">
-        <div class="card-body" style="padding:var(--space-4) var(--space-5);">
-          <div class="gauge-wrapper">
-            <div class="gauge-track">
-              <div class="gauge-needle" id="gauge-needle" style="left:0%"></div>
-            </div>
-            <div class="gauge-labels">
-              <span>Low</span><span>Moderate</span><span>High</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- All-model summary -->
       <div class="card">
         <div class="card-header">
-          <div class="card-header-icon" style="background:var(--color-surface-offset);">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-muted)" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <div>
+            <div class="card-title">3-Year Mortality Risk</div>
+            <div class="card-subtitle" id="result-model-label">All-cause · VALOR-m</div>
           </div>
-          <div class="card-title">All Models Overview</div>
         </div>
-        <div class="card-body" style="padding:var(--space-4) var(--space-5);">
-          <div class="mini-results">
-            <div class="mini-result-box allcause">
-              <div class="mini-result-label">All-Cause</div>
-              <div class="mini-result-value" id="mini-allcause">—</div>
+        <div class="card-body" style="padding-top:var(--space-4);">
+          <div class="result-main">
+            <div class="result-value" id="result-value">--</div>
+            <div class="result-label" id="result-label">Enter values and click Calculate</div>
+            <div class="result-surv" id="surv-prob"></div>
+          </div>
+          <div class="age-error-msg" id="age-error-msg">
+            This tool is validated for VLOSLP only — defined as first psychosis onset at age 60 or above. Please enter age ≥ 60.
+          </div>
+        </div>
+        <div class="footnote" id="result-footnote">
+          All-cause model (VALOR-m): S₀(3yr) = 0.899 at reference age 60, female, no comorbidities.
+        </div>
+      </div>
+
+      <!-- All-models overview -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">All Models — 3-Year Risk Overview</div>
+            <div class="card-subtitle">Side-by-side comparison</div>
+          </div>
+        </div>
+        <div class="card-body" style="padding-top:var(--space-4); padding-bottom:var(--space-4);">
+          <div class="mini-risks">
+            <div class="mini-risk all">
+              <div class="mini-risk-val" id="ac-risk">--</div>
+              <div class="mini-risk-label">All-Cause</div>
             </div>
-            <div class="mini-result-box resp">
-              <div class="mini-result-label">Respiratory</div>
-              <div class="mini-result-value" id="mini-resp">—</div>
+            <div class="mini-risk resp">
+              <div class="mini-risk-val" id="rsp-risk">--</div>
+              <div class="mini-risk-label">Respiratory</div>
             </div>
-            <div class="mini-result-box cvd">
-              <div class="mini-result-label">Cardiovascular</div>
-              <div class="mini-result-value" id="mini-cvd">—</div>
+            <div class="mini-risk cvd">
+              <div class="mini-risk-val" id="cvd-risk">--</div>
+              <div class="mini-risk-label">Cardiovascular</div>
             </div>
           </div>
-          <p style="font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-3);text-align:center;">Cause-specific models use subdistribution hazard ratios (Fine-Gray). Respiratory + CVD percentages are not additive to all-cause.</p>
         </div>
       </div>
 
       <!-- Survival curve -->
       <div class="card">
         <div class="card-header">
-          <div class="card-header-icon" style="background:var(--color-surface-offset);">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-muted)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div>
+            <div class="card-title">Predicted Survival Curve</div>
+            <div class="card-subtitle">Years 0–3 since onset</div>
           </div>
-          <div class="card-title">Predicted Survival Curve</div>
         </div>
         <div class="card-body">
-          <div class="chart-wrapper">
-            <canvas id="survivalChart" aria-label="Predicted survival curve"></canvas>
+          <div class="chart-wrap">
+            <canvas id="survivalChart"></canvas>
           </div>
         </div>
       </div>
 
-    </div><!-- /result-stack -->
-  </div><!-- /calc-grid -->
-
-  <div class="footnote">
-    VALOR-m was developed using LASSO-penalised Cox regression in a population-based cohort of 33,462 older adults with VLOSLP (CDARS, Hong Kong, 2002–2024) and validated via spatiotemporal internal-external cross-validation. Cause-specific models use Fine-Gray competing risks regression. This tool is intended to support clinical decision-making and does not replace clinical judgement. For research and clinical use only.
-  </div>
+    </div><!-- end right col -->
+  </div><!-- end calc-grid -->
 </main>
 
 <script>
-// ── Model definitions ────────────────────────────────────────────────────────
-// 
-// ALL-CAUSE MODEL (VALOR-m): LASSO Cox, 12 predictors
-//   β_age per year above 60, β_male for sex=male
-//   Baseline survival S0(3yr) = 0.989
-//
-// RESPIRATORY MODEL: LASSO Fine-Gray, 6 predictors
-//   Baseline CIF subdistribution: estimated from model intercept
-//   Uses subdistribution HR approach
-//
-// CVD MODEL: LASSO Fine-Gray, 4 predictors
-// ────────────────────────────────────────────────────────────────────────────
-
+// ─── MODEL DEFINITIONS ────────────────────────────────────────────────────────
 const MODELS = {
   'all-cause': {
-    label: 'VALOR-m All-Cause',
-    subtitle: 'VALOR-m All-Cause Model — 3-year risk',
-    badgeClass: 'badge-allcause',
-    resultLabel: '3-Year All-Cause Mortality Risk',
-    // β coefficients
-    coefs: {
-      age:        0.039,  // per year above 60; HR 1.040
-      male:       0.467,  // male sex; HR 1.595
-      metacanc:   2.021,  // metastatic cancer; HR 7.545
-      liver_dis:  0.339,  // liver disease (ld); HR 1.403
-      solid_tum:  0.680,  // solid tumour without metastasis (solidtum); HR 1.974
-      renal_fail: 0.548,  // renal failure (rf); HR 1.729
-      weight_loss:0.208,  // weight loss (wloss); HR 1.231
-      cpd:        0.262,  // chronic pulmonary disease; HR 1.299
-      chf:        0.382,  // congestive heart failure; HR 1.465
-      diab_comp:  0.275,  // diabetes, complicated (diabc); HR 1.316
-      arrhythmia: 0.169,  // cardiac arrhythmia (carit); HR 1.184
-      fed:        0.224   // fluid and electrolyte disorders; HR 1.251
-    },
-    // Baseline survival at t=0,1,2,3 years
+    label:    'VALOR-m — All-Cause Mortality',
+    subtitle: 'LASSO Cox regression · 12 retained predictors · C-statistic 0.74',
+    footnote: 'All-cause model (VALOR-m): S₀(3yr) = 0.899 at reference age 60, female, no comorbidities.',
+    resultLabel: 'All-cause · VALOR-m',
+    color:    '#0a7c6e',
+    // Baseline survival at t = 0, 1, 2, 3 years (from basehaz() in R, reference subject)
     s0: [1.000, 0.94925, 0.92189, 0.89880],
-    formula: '<strong style="color:var(--color-text);">VALOR-m Formula (All-Cause, LASSO Cox)</strong><br>Risk score = <code>β_age × (age − 60) + Σ βᵢ × xᵢ</code><br>3-yr mortality = <code>(1 − S₀(3)^exp(risk score)) × 100%</code><br><em style="color:var(--color-text-faint);">S₀ from survest() at reference patient (age=60, female, no comorbidities): S₀(1yr)=0.949, S₀(2yr)=0.922, S₀(3yr)=0.899 | c-statistic 0.735 (0.728–0.742) | AUC 0.773 (0.766–0.780) | 12 predictors</em>'
+    coefs: {
+      age:      0.039,
+      male:     0.314,
+      chf:      0.387,
+      carit:    0.193,
+      cpd:      0.352,
+      diabc:    0.238,
+      rf:       0.548,
+      ld:       0.339,
+      solidtum: 0.453,
+      metacanc: 1.536,
+      wloss:    0.326,
+      fed:      0.224,
+    },
+    active: ['chf','carit','cpd','diabc','rf','ld','solidtum','metacanc','wloss','fed']
   },
   'resp': {
-    label: 'Respiratory Cause-Specific',
-    subtitle: 'Respiratory Mortality Model — Fine-Gray competing risks',
-    badgeClass: 'badge-resp',
-    resultLabel: '3-Year Respiratory Mortality Risk',
+    label:    'Respiratory Cause-Specific Mortality',
+    subtitle: 'Fine-Gray subdistribution model · 6 predictors · AUC 0.72',
+    footnote: 'Respiratory model: S₀ values are placeholders — update with predictRisk() output from R.',
+    resultLabel: 'Respiratory · Fine-Gray',
+    color:    '#2563eb',
+    // TODO: Replace with actual predictRisk() baseline from R
+    s0: [1.000, 0.97500, 0.96200, 0.95000],
     coefs: {
-      age:       0.031,
-      male:      0.289,
-      cpd:       0.611,
-      chf:       0.274,
-      arrhythmia:0.191,
-      fed:       0.198
+      age:   0.042,
+      male:  0.271,
+      cpd:   0.631,
+      chf:   0.298,
+      carit: 0.187,
+      fed:   0.253,
     },
-    s0: [1.000, 0.9780, 0.9600, 0.9390],
-    formula: '<strong style="color:var(--color-text);">Respiratory Model (Fine-Gray)</strong><br>6 predictors: age, sex, CPD, CHF, cardiac arrhythmia, FED<br>Sub-distribution HR approach | Competing events treated as censored<br><em style="color:var(--color-text-faint);">AUC 0.723 (0.706–0.740) | c-statistic 0.710 (0.693–0.727) | Cal. slope 0.912</em>'
+    active: ['cpd','chf','carit','fed']
   },
   'cvd': {
-    label: 'Cardiovascular Cause-Specific',
-    subtitle: 'Cardiovascular Mortality Model — Fine-Gray competing risks',
-    badgeClass: 'badge-cvd',
-    resultLabel: '3-Year Cardiovascular Mortality Risk',
+    label:    'Cardiovascular Cause-Specific Mortality',
+    subtitle: 'Fine-Gray subdistribution model · 4 predictors · AUC 0.68',
+    footnote: 'CVD model: S₀ values are placeholders — update with predictRisk() output from R.',
+    resultLabel: 'Cardiovascular · Fine-Gray',
+    color:    '#dc2626',
+    // TODO: Replace with actual predictRisk() baseline from R
+    s0: [1.000, 0.98200, 0.97100, 0.96200],
     coefs: {
-      age:       0.034,
-      renal_fail:0.461,
-      chf:       0.452,
-      arrhythmia:0.348
+      age:   0.038,
+      rf:    0.512,
+      chf:   0.441,
+      carit: 0.334,
     },
-    s0: [1.000, 0.9880, 0.9780, 0.9640],
-    formula: '<strong style="color:var(--color-text);">CVD Model (Fine-Gray)</strong><br>4 predictors: age, renal failure, CHF, cardiac arrhythmia<br>Note: O/E ratio 0.60 reflects temporal improvement in cardiovascular healthcare<br><em style="color:var(--color-text-faint);">AUC 0.687 (0.642–0.731) | c-statistic 0.684 (0.640–0.727) | Cal. slope 1.183</em>'
+    active: ['rf','chf','carit']
   }
 };
 
-// ── Comorbidity definitions ──────────────────────────────────────────────────
-// Each entry: { id, label, models: ['all-cause','resp','cvd'] }
+// ─── COMORBIDITY DEFINITIONS ──────────────────────────────────────────────────
 const COMORBIDITIES = [
-  { id: 'chf',        label: 'Congestive Heart Failure',    models: ['all-cause','resp','cvd'] },
-  { id: 'arrhythmia', label: 'Cardiac Arrhythmia',          models: ['all-cause','resp','cvd'] },
-  { id: 'renal_fail', label: 'Renal Failure',               models: ['all-cause','cvd'] },
-  { id: 'cpd',        label: 'Chronic Pulmonary Disease',   models: ['all-cause','resp'] },
-  { id: 'fed',        label: 'Fluid/Electrolyte Disorder',  models: ['all-cause','resp'] },
-  { id: 'metacanc',   label: 'Metastatic Cancer',           models: ['all-cause'] },
-  { id: 'solid_tum',  label: 'Solid Tumour',                models: ['all-cause'] },
-  { id: 'liver_dis',  label: 'Liver Disease',               models: ['all-cause'] },
-  { id: 'weight_loss',label: 'Weight Loss',                 models: ['all-cause'] },
-  { id: 'diab_comp',  label: 'Diabetes, Complicated',       models: ['all-cause'] }
+  { id: 'chf',      label: 'Congestive Heart Failure' },
+  { id: 'carit',    label: 'Cardiac Arrhythmias' },
+  { id: 'valv',     label: 'Valvular Disease' },
+  { id: 'pcd',      label: 'Pulmonary Circ. Disease' },
+  { id: 'pvd',      label: 'Peripheral Vascular Dis.' },
+  { id: 'cpd',      label: 'Chronic Pulmonary Dis.' },
+  { id: 'diabunc',  label: 'Diabetes, Uncomplicated' },
+  { id: 'diabc',    label: 'Diabetes, Complicated' },
+  { id: 'rf',       label: 'Renal Failure' },
+  { id: 'ld',       label: 'Liver Disease' },
+  { id: 'solidtum', label: 'Solid Tumour' },
+  { id: 'metacanc', label: 'Metastatic Cancer' },
+  { id: 'lymph',    label: 'Lymphoma' },
+  { id: 'aids',     label: 'HIV / AIDS' },
+  { id: 'coag',     label: 'Coagulopathy' },
+  { id: 'wloss',    label: 'Weight Loss' },
+  { id: 'fed',      label: 'Fluid/Electrolyte Dis.' },
+  { id: 'blane',    label: 'Blood Loss Anaemia' },
+  { id: 'dane',     label: 'Deficiency Anaemia' },
+  { id: 'ond',      label: 'Other Neurological Dis.' },
+  { id: 'para',     label: 'Paralysis' },
+  { id: 'hypothy',  label: 'Hypothyroidism' },
+  { id: 'rheumd',   label: 'Rheumatoid Arthritis' },
+  { id: 'pud',      label: 'Peptic Ulcer Disease' },
+  { id: 'alcohol',  label: 'Alcohol Abuse' },
 ];
 
-// ── State ────────────────────────────────────────────────────────────────────
-let currentModel = 'all-cause';
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let activeModel   = 'all-cause';
 let chartInstance = null;
+const checked     = {};
+COMORBIDITIES.forEach(c => checked[c.id] = false);
 
-// ── Build comorbidity grid ───────────────────────────────────────────────────
-function buildGrid() {
-  const grid = document.getElementById('comorbidity-grid');
+// ─── BUILD COMORBIDITY GRID ───────────────────────────────────────────────────
+function buildGrid(modelKey) {
+  const model  = MODELS[modelKey];
+  const grid   = document.getElementById('comorbidity-grid');
   grid.innerHTML = '';
   COMORBIDITIES.forEach(c => {
-    const item = document.createElement('label');
-    item.className = 'toggle-item';
-    item.htmlFor = c.id;
-    item.dataset.comorbId = c.id;
-    if (!c.models.includes(currentModel)) item.classList.add('inactive');
-    item.innerHTML = `
-      <input type="checkbox" id="${c.id}" onchange="onToggleChange()">
-      <span class="toggle-box"></span>
-      <span class="toggle-label">${c.label}</span>
-    `;
-    item.addEventListener('click', function(e) {
-      if (e.target.tagName !== 'INPUT') {
-        const cb = this.querySelector('input');
-        if (!this.classList.contains('inactive')) {
-          cb.checked = !cb.checked;
-          this.classList.toggle('checked', cb.checked);
-          onToggleChange();
-        }
-        e.preventDefault();
-      }
-    });
-    grid.appendChild(item);
+    const isActive = model.active.includes(c.id);
+    const div = document.createElement('div');
+    div.className = 'toggle-item' + (checked[c.id] ? ' checked' : '') + (!isActive ? ' disabled' : '');
+    div.dataset.id = c.id;
+    div.setAttribute('role', 'checkbox');
+    div.setAttribute('aria-checked', checked[c.id]);
+    div.title = isActive ? '' : 'Not included in this model';
+    div.innerHTML = `
+      <div class="toggle-switch">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5">
+          <polyline points="2,6 5,9 10,3"/>
+        </svg>
+      </div>
+      <span class="toggle-label">${c.label}</span>`;
+    if (isActive) {
+      div.onclick = () => {
+        checked[c.id] = !checked[c.id];
+        div.classList.toggle('checked', checked[c.id]);
+        div.setAttribute('aria-checked', checked[c.id]);
+        calculateAll();
+      };
+    }
+    grid.appendChild(div);
   });
-  updateActiveCount();
 }
 
-function onToggleChange() {
-  document.querySelectorAll('.toggle-item').forEach(item => {
-    const cb = item.querySelector('input');
-    item.classList.toggle('checked', cb.checked);
-  });
-  updateActiveCount();
+// ─── SWITCH MODEL TAB ─────────────────────────────────────────────────────────
+function switchModel(key) {
+  activeModel = key;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.model === key));
+  const m = MODELS[key];
+  document.getElementById('model-title').textContent   = m.label;
+  document.getElementById('model-subtitle').textContent = m.subtitle;
+  document.getElementById('result-model-label').textContent = m.resultLabel;
+  document.getElementById('result-footnote').textContent    = m.footnote;
+  buildGrid(key);
   calculateAll();
 }
 
-function updateActiveCount() {
-  let count = 0;
-  document.querySelectorAll('#comorbidity-grid .toggle-item:not(.inactive) input:checked').forEach(() => count++);
-  document.getElementById('active-predictor-count').textContent = count + ' active';
+// ─── AGE VALIDATION ───────────────────────────────────────────────────────────
+function validateAge() {
+  const age   = parseFloat(document.getElementById('onset_age').value);
+  const input = document.getElementById('onset_age');
+  const warn  = document.getElementById('age-warning');
+  const invalid = isNaN(age) || age < 60;
+  input.classList.toggle('error', invalid);
+  warn.classList.toggle('visible', invalid);
 }
 
-// ── Switch model ─────────────────────────────────────────────────────────────
-function switchModel(model) {
-  currentModel = model;
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.model === model);
-    btn.setAttribute('aria-selected', btn.dataset.model === model);
-  });
-  // Update inactive comorbidities
-  document.querySelectorAll('.toggle-item').forEach(item => {
-    const id = item.dataset.comorbId;
-    const def = COMORBIDITIES.find(c => c.id === id);
-    const active = def && def.models.includes(model);
-    item.classList.toggle('inactive', !active);
-    if (!active) { item.classList.remove('checked'); item.querySelector('input').checked = false; }
-  });
-  document.getElementById('model-subtitle').textContent = MODELS[model].subtitle;
-  document.getElementById('formula-box').innerHTML = MODELS[model].formula;
-  updateActiveCount();
-  calculateAll();
-}
-
-// ── Compute risk for a model ─────────────────────────────────────────────────
+// ─── COMPUTE RISK FOR ONE MODEL ───────────────────────────────────────────────
 function computeRisk(modelKey) {
-  const m = MODELS[modelKey];
-  const age = parseFloat(document.getElementById('onset_age').value) || 75;
+  const m   = MODELS[modelKey];
+  const age = parseFloat(document.getElementById('onset_age').value);
   const sex = parseInt(document.getElementById('sex').value);
 
-  let PI = 0;
-  // Age term
-  if (m.coefs.age !== undefined) PI += m.coefs.age * (age - 60);
-  // Sex term
-  if (sex === 1 && m.coefs.male !== undefined) PI += m.coefs.male;
+  // Only valid for VLOSLP: age ≥ 60
+  if (isNaN(age) || age < 60) return null;
 
-  // Comorbidity terms
+  let PI = 0;
+  if (m.coefs.age  !== undefined) PI += m.coefs.age * (age - 60);
+  if (sex === 1 && m.coefs.male !== undefined) PI += m.coefs.male;
   COMORBIDITIES.forEach(c => {
-    if (m.coefs[c.id] !== undefined) {
-      const cb = document.getElementById(c.id);
-      if (cb && cb.checked) PI += m.coefs[c.id];
-    }
+    if (checked[c.id] && m.coefs[c.id] !== undefined) PI += m.coefs[c.id];
   });
 
-  const HR = Math.exp(PI);
-  // S(t) = S0(t)^HR  at t=3 (index 3)
-  const s3 = Math.pow(m.s0[3], HR);
-  const risk3 = (1 - s3) * 100;
+  const HR    = Math.exp(PI);
+  const s0_3  = m.s0[3];
+  const surv3 = Math.max(0, Math.min(1, Math.pow(s0_3, HR)));
+  const risk3 = (1 - surv3) * 100;
+  const survCurve = m.s0.map(s => Math.pow(s, HR));
 
-  // Full curve
-  const curve = m.s0.map(s0t => Math.pow(s0t, HR));
-
-  return { risk: Math.min(Math.max(risk3, 0), 100), surv: s3 * 100, curve, HR };
+  return { risk3, surv3, survCurve, HR, color: m.color };
 }
 
-// ── Main calculation ─────────────────────────────────────────────────────────
+// ─── MAIN CALCULATE ───────────────────────────────────────────────────────────
 function calculateAll() {
-  const acResult  = computeRisk('all-cause');
-  const rspResult = computeRisk('resp');
-  const cvdResult = computeRisk('cvd');
+  const age      = parseFloat(document.getElementById('onset_age').value);
+  const ageInput = document.getElementById('onset_age');
+  const errMsg   = document.getElementById('age-error-msg');
+  const invalid  = isNaN(age) || age < 60;
 
-  // All-model mini overview (always using current inputs)
-  document.getElementById('mini-allcause').textContent = acResult.risk.toFixed(1) + '%';
-  document.getElementById('mini-resp').textContent     = rspResult.risk.toFixed(1) + '%';
-  document.getElementById('mini-cvd').textContent      = cvdResult.risk.toFixed(1) + '%';
+  // Show/hide age error UI
+  errMsg.classList.toggle('visible', invalid);
 
-  // Primary display = selected model
-  const active = currentModel === 'all-cause' ? acResult : currentModel === 'resp' ? rspResult : cvdResult;
-  const m = MODELS[currentModel];
+  const rv = document.getElementById('result-value');
+  const rl = document.getElementById('result-label');
+  const sp = document.getElementById('surv-prob');
 
-  const riskVal = active.risk;
-  const survVal = active.surv;
+  if (invalid) {
+    rv.textContent = 'N/A';
+    rv.className   = 'result-value na';
+    rl.textContent = 'Age of onset must be ≥ 60';
+    sp.textContent = '';
+    ['ac-risk','rsp-risk','cvd-risk'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.textContent = 'N/A'; el.style.color = 'var(--color-error)'; }
+    });
+    if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+    return;
+  }
 
-  // Update display
-  const valEl = document.getElementById('result-value');
-  valEl.textContent = riskVal.toFixed(1) + '%';
-  valEl.className = 'result-value ' + (riskVal < 10 ? 'risk-low' : riskVal < 30 ? 'risk-mod' : 'risk-high');
+  // Reset error colours on mini panels
+  ['ac-risk','rsp-risk','cvd-risk'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.color = '';
+  });
+  rv.className = 'result-value';
 
-  document.getElementById('result-label').textContent = m.resultLabel;
-  document.getElementById('result-surv').textContent = 'Survival probability: ' + survVal.toFixed(1) + '%';
-  const badge = document.getElementById('result-badge');
-  badge.textContent = m.label;
-  badge.className = 'result-model-badge ' + m.badgeClass;
+  // Compute all three models
+  const results = {
+    'all-cause': computeRisk('all-cause'),
+    'resp':      computeRisk('resp'),
+    'cvd':       computeRisk('cvd'),
+  };
 
-  // Gauge: map 0-100% risk to 0-100% position, cap at 80% for visual clarity
-  const gaugePos = Math.min(riskVal / 80 * 100, 100);
-  document.getElementById('gauge-needle').style.left = gaugePos + '%';
+  // Update mini panels
+  const acR = results['all-cause'];
+  const rsR = results['resp'];
+  const cvR = results['cvd'];
+  document.getElementById('ac-risk').textContent  = acR  ? acR.risk3.toFixed(1)  + '%' : '--';
+  document.getElementById('rsp-risk').textContent = rsR  ? rsR.risk3.toFixed(1)  + '%' : '--';
+  document.getElementById('cvd-risk').textContent = cvR  ? cvR.risk3.toFixed(1)  + '%' : '--';
 
-  // Chart
-  drawChart(active.curve);
+  // Update primary result panel with the active model
+  const r = results[activeModel];
+  if (r) {
+    rv.textContent = r.risk3.toFixed(1) + '%';
+    rv.style.color = r.color;
+    rl.textContent = '3-year mortality probability';
+    sp.textContent = 'Survival probability: ' + (r.surv3 * 100).toFixed(1) + '%';
+    drawChart(r.survCurve, r.color);
+  }
 }
 
-// ── Chart ────────────────────────────────────────────────────────────────────
-function drawChart(curveData) {
+// ─── DRAW SURVIVAL CHART ──────────────────────────────────────────────────────
+function drawChart(survData, color) {
   const ctx = document.getElementById('survivalChart').getContext('2d');
-  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  const colors = {
-    'all-cause': { line: '#0a7c6e', fill: 'rgba(10,124,110,0.12)' },
-    'resp':      { line: '#2563eb', fill: 'rgba(37,99,235,0.12)' },
-    'cvd':       { line: '#dc2626', fill: 'rgba(220,38,38,0.12)' }
-  };
-  const c = colors[currentModel];
-
   if (chartInstance) chartInstance.destroy();
   chartInstance = new Chart(ctx, {
     type: 'line',
@@ -803,57 +525,54 @@ function drawChart(curveData) {
       labels: ['0', '1', '2', '3'],
       datasets: [{
         label: 'Predicted Survival',
-        data: curveData,
-        borderColor: c.line,
-        backgroundColor: c.fill,
-        borderWidth: 2.5, fill: true, tension: 0.35, pointRadius: 4,
-        pointBackgroundColor: c.line
+        data: survData,
+        borderColor: color,
+        backgroundColor: color + '18',
+        borderWidth: 2.5,
+        fill: true,
+        tension: 0.35,
+        pointRadius: 4,
+        pointBackgroundColor: color,
       }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      animation: { duration: 400 },
+      plugins: { legend: { display: false } },
       scales: {
         y: {
           min: 0, max: 1,
-          title: { display: true, text: 'Survival Probability', font: { size: 11 }, color: isDark ? '#748f87' : '#5a6b65' },
-          ticks: { callback: v => (v*100).toFixed(0)+'%', color: isDark ? '#748f87' : '#5a6b65', font: { size: 11 } },
-          grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }
+          title: { display: true, text: 'Survival Probability', font: { size: 11 } },
+          ticks: { callback: v => (v * 100).toFixed(0) + '%', font: { size: 11 } }
         },
         x: {
-          title: { display: true, text: 'Years Since Onset', font: { size: 11 }, color: isDark ? '#748f87' : '#5a6b65' },
-          ticks: { color: isDark ? '#748f87' : '#5a6b65', font: { size: 11 } },
-          grid: { display: false }
+          title: { display: true, text: 'Years Since Onset', font: { size: 11 } },
+          ticks: { font: { size: 11 } }
         }
-      },
-      plugins: { legend: { display: false }, tooltip: {
-        callbacks: {
-          label: ctx => 'Survival: ' + (ctx.parsed.y * 100).toFixed(1) + '%',
-          title: ctx => 'Year ' + ctx[0].label
-        }
-      }}
+      }
     }
   });
 }
 
-// ── Theme toggle ─────────────────────────────────────────────────────────────
-(function() {
+// ─── THEME TOGGLE ─────────────────────────────────────────────────────────────
+(function(){
   const t = document.querySelector('[data-theme-toggle]');
   const r = document.documentElement;
-  let d = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
   r.setAttribute('data-theme', d);
   if (t) t.addEventListener('click', () => {
     d = d === 'dark' ? 'light' : 'dark';
     r.setAttribute('data-theme', d);
-    // Redraw chart for new theme
-    const active = currentModel === 'all-cause' ? computeRisk('all-cause') : currentModel === 'resp' ? computeRisk('resp') : computeRisk('cvd');
-    drawChart(active.curve);
+    t.innerHTML = d === 'dark'
+      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
   });
 })();
 
-// ── Init ─────────────────────────────────────────────────────────────────────
-buildGrid();
-calculateAll();
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+window.onload = function() {
+  buildGrid('all-cause');
+  calculateAll();
+};
 </script>
 </body>
 </html>
