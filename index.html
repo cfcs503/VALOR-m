@@ -173,7 +173,7 @@
       <div class="card-header">
         <div>
           <div class="card-title" id="model-title">VALOR-m — All-Cause Mortality Model</div>
-          <div class="card-subtitle" id="model-subtitle">LASSO Cox regression · 12 retained predictors · C-statistic 0.74</div>
+          <div class="card-subtitle" id="model-subtitle">LASSO Cox regression · 12 retained predictors</div>
         </div>
       </div>
       <div class="card-body">
@@ -282,7 +282,7 @@
 const MODELS = {
   'all-cause': {
     label:    'VALOR-m — All-Cause Mortality',
-    subtitle: 'LASSO Cox regression · 12 retained predictors · C-statistic 0.74',
+    subtitle: 'LASSO Cox regression · 12 retained predictors',
     footnote: 'All-cause model (VALOR-m): S₀(3yr) = 0.899 at reference age 60, female, no comorbidities.',
     resultLabel: 'All-cause · VALOR-m',
     color:    '#0a7c6e',
@@ -306,7 +306,7 @@ const MODELS = {
   },
   'resp': {
     label:    'Respiratory Cause-Specific Mortality',
-    subtitle: 'Fine-Gray subdistribution model · 6 predictors · AUC 0.72',
+    subtitle: 'Fine-Gray subdistribution model · 6 predictors',
     footnote: 'Respiratory model: S₀ values are placeholders — update with predictRisk() output from R.',
     resultLabel: 'Respiratory · Fine-Gray',
     color:    '#2563eb',
@@ -324,7 +324,7 @@ const MODELS = {
   },
   'cvd': {
     label:    'Cardiovascular Cause-Specific Mortality',
-    subtitle: 'Fine-Gray subdistribution model · 4 predictors · AUC 0.68',
+    subtitle: 'Fine-Gray subdistribution model · 4 predictors',
     footnote: 'CVD model: S₀ values are placeholders — update with predictRisk() output from R.',
     resultLabel: 'Cardiovascular · Fine-Gray',
     color:    '#dc2626',
@@ -344,14 +344,14 @@ const MODELS = {
 const COMORBIDITIES = [
   { id: 'chf',      label: 'Congestive Heart Failure' },
   { id: 'carit',    label: 'Cardiac Arrhythmias' },
-  { id: 'cpd',      label: 'Chronic Pulmonary Dis.' },
+  { id: 'cpd',      label: 'Chronic Pulmonary Disorder' },
   { id: 'diabc',    label: 'Diabetes, Complicated' },
   { id: 'rf',       label: 'Renal Failure' },
   { id: 'ld',       label: 'Liver Disease' },
   { id: 'solidtum', label: 'Solid Tumour' },
   { id: 'metacanc', label: 'Metastatic Cancer' },
   { id: 'wloss',    label: 'Weight Loss' },
-  { id: 'fed',      label: 'Fluid/Electrolyte Dis.' },
+  { id: 'fed',      label: 'Fluid/Electrolyte Disorder' },
 ];
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
